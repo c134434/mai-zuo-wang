@@ -1,0 +1,131 @@
+.Shop{
+	background: #f2f2f2;
+}
+.page .swiper-container1{
+	width: 100%;
+	height: 92px;
+	position: relative;
+}
+.swiper-container1 .swiper-slide{
+	width: 100%; 
+	height: 100%;
+	display: block;
+}
+.swiper-slide .banner-img{ 
+	display: block;
+	width: 100%;
+	height: 100%;  
+}
+.swiper-container1 .swiper-pagination{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+.swiper-pagination .swiper-pagination-bullet:nth-of-type(1){
+	display: none;
+}
+.swiper-pagination .swiper-pagination-bullet-active{
+	background: #000;
+	opacity: 0.7;
+}
+.page .shops{
+	background-color: #fff;
+    padding: 15px 0;
+    box-sizing: border-box;
+}
+.shops .shops-list{
+	width: 100%;
+	height: 100%;
+}
+.shops-list .shop{
+	width: 25%;
+    height: 100%;
+    margin: 8px 0;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+}
+.shop .sh{
+	display: block;
+	color: #333;
+}
+.shop .sh .shop-img{
+	display: block;
+	width: 40px;
+	margin-left: 20px;
+}
+.shop .shop-name{
+	font-size: 12px;
+    text-align: center;
+    color: #323232; 
+}
+.page .active-contain{
+	margin-top: 8px;
+	background: #fff;
+	padding-left: 10px;
+    padding-right: 10px;
+    overflow: hidden;
+}
+.active-contain .active-left{
+	float: left;
+    width: 50%;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 4.5px;
+    box-sizing: border-box;
+}
+.active-left .active-left-img{
+	display: block;
+	width: 100%; 
+}
+.page .main{
+	width: 100%;
+}
+.main .subject-center{ 
+	margin-top: 8px;
+	padding: 10px;
+	background: #fff; 
+}
+.subject-center .data-growing-idx{
+	width: 100%;
+	padding-bottom: 4px; 
+}
+.data-growing-idx .data-growing-img{
+	width: 100%; 
+}
+.subject-center .pic-list{
+	width: 100%;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    box-sizing: border-box;
+}
+.pic-list .subject-item{
+	display: inline-block;
+    width: 30%; 
+}
+.subject-item .control-list{
+	width: 90px;
+	display: inline-block;
+}
+.control-list .control-list-img{
+	width:85px;
+	height: 89px;
+}
+.control-list .control-list-title{
+	width: 100%;
+	text-align: center;
+	font-size: 12px;
+    color: #323232;
+    height: 11px; 
+    margin-top: 5px;
+}
+.control-list .control-list-price{
+	margin-top: 6px;
+	width: 100%;
+	text-align: center;
+	font-size: 14px;
+    color: #ff6640;
+    padding: 5px 0;
+}	

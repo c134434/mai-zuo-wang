@@ -1,0 +1,101 @@
+.page .qu-list{
+	background-color: #fff;
+    width: 100%;
+}
+.qu-list .item{
+	width: 100%;
+}
+.item .title{ 
+	height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    padding-left: 16px;
+    background: #e1e1e1;
+    margin-bottom: 1px;
+    color: #636363;
+    cursor: pointer; 
+    box-sizing: border-box;
+}
+.item .menu{
+	width: 100%;
+	background: #fff;
+}
+.menu .it{
+	margin: 0 auto;
+    border-bottom: 1px solid #e1e1e1;
+    cursor: pointer;
+    width: 100%;
+}
+.it .its{
+	border-radius: 5px;
+    padding: 10px 0 12px 16px;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+.its .its-top{
+	width: 100%;
+}
+.its-top .title1{
+	max-width: 180px;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+    font-size: 16px; 
+    margin-right: 10px;
+    color: #333; 
+}
+.its-top .icon-zuo,.its-top .icon-tong{ 
+	color: #fc8558;
+	font-size: 12px;
+	font-style: normal;
+    box-sizing: border-box;
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    text-align: center;
+    border: 1px solid #fc8558;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+.its-top .icon-tong{
+	color: #88aec8;
+	border-color:#88aec8;
+	 margin-right: 0   
+} 
+.its-top .icon-arrow-right{
+	float: right;
+	height: 18px;
+    line-height: 18px;
+	margin-right: 20px;
+	font-size: 12px;
+    color: #c6c6c6; 
+    font-style: normal;
+} 
+.its .activity{
+	background-color: #ff9658;
+	display: inline-block;
+    border-radius: 3px;
+    padding: 0 5px;
+    margin: 0 5px;
+    font-style: normal;
+    color: #fff;
+    height: 15px;
+    line-height: 15px;
+    font-size: 12px; 
+}
+.its .address{
+	font-size: 12px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	color: #ccc;
+	overflow: hidden;
+	max-width: 220px;
+	margin-top: 10px;
+}
+.its .distence{
+	font-size: 12px;
+	color: #ccc;
+	margin-top: 10px;
+}

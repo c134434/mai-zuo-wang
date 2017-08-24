@@ -1,0 +1,220 @@
+ .detail{
+ 	background-color: #f2f2f2; 
+ }
+ .page .home-banner1{
+ 	width: 100%;
+ 	height: 320px;
+ }
+.home-banner .banner-img{
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+.page .item-info{
+	padding: 4px 10px;
+    background: #fff;
+    box-sizing: border-box;
+}
+.item-info .name{
+	font-size: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.item-info .subname{
+	font-size: 12px;
+    color: #757575;
+    margin-top: 4px;
+}
+.item-info .price{
+	    margin-top: 4px;
+    color: #ff5000;
+    font-size: 21px;
+    font-weight: 700;
+} 
+.item-info .tips{
+	margin: 2px 0;
+    font-size: 12px;
+}
+.tips .express-fee{
+	display: inline-block;
+    width: 33%;
+    color: #757575;
+}
+.tips .sold-amount{
+	display: inline-block;
+    width: 33%;
+    color: #757575;
+    text-align: center;
+}
+.tips .location{
+	display: inline-block;
+    width: 33%;
+    color: #757575;
+    text-align: right; 
+}
+.page .sku-pick{
+	margin: 10px 0;
+    height: 45px;
+    line-height: 45px;
+    font-size: 14px;
+    padding: 0 12px;
+    background-color: #fff;
+    box-sizing: border-box;
+}
+.sku-pick span{
+	line-height: 45px;
+    font-size: 14px;
+}
+.sku-pick .count-num{
+	margin-left: 2px;
+} 
+.sku-pick .icon-arrow-right{
+	float: right;
+	font-size: 12px;
+}
+.page .sku-box{
+	height: 100%;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    background-color: rgba(0,0,0,.3);
+    width: 100%;
+}
+.sku-box .box-body{
+	background-color: #fff;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+   width: 100%;
+}
+.box-body .box-sku-info{
+	padding: 10px 10px 0;
+	box-sizing: border-box;
+}
+.box-sku-info .box-sku-head{
+	width: 100%;
+	overflow: hidden;
+}
+.box-sku-info .clearfix:before{
+	content: "";
+    display: table;
+}
+.box-sku-head .sku-pic{
+	float: left;
+    width: 88px;
+    height: 88px;
+    border: 1px solid #e1e1e1;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+.sku-pic .sku-pic-img{
+	width: 100%;
+    display: block;
+}
+.box-sku-head .sku-context{
+	float: left;
+    margin-left: 16px;
+}
+.sku-context .price{
+	font-size: 18px;
+    margin-top: 40px;
+    color: #ff5000;
+}
+.sku-context .name{
+	box-sizing: border-box;
+}
+.box-sku-head i{
+	position: absolute;
+    right: 12px;
+    top: 12px;
+    border-radius: 50%;
+    border: 1px solid #a2a2a2;
+    color: gray;
+    padding: 4px;
+    height: 16px;
+    width: 16px;
+    line-height: 16px;
+}
+.box-body .sku-select{
+	padding: 0 10px;
+    max-height: 200px;
+    overflow-y: scroll;
+    box-sizing: border-box;
+}
+.sku-select .box-sku-list{
+	border-top: 1px solid #f2f2f2;
+}
+.box-sku-list .box-sku-list{
+	margin-top: 8px;
+    font-size: 14px;
+}
+.box-sku-list .option-list{
+	margin-bottom: 4px;
+}
+.option-list span{
+	border: 1px solid rgba(0,0,0,.3);
+    padding: 5px 16px;
+    border-radius: 2px;
+    font-size: 10px;
+    margin: 4px 8px 4px 0;
+    display: inline-block;
+}
+.box-body .box-count{
+	border-top: 1px solid #f2f2f2;
+    margin: 0 10px;
+}
+.box-count .count-title{
+	margin: 12px 0 4px;
+    font-size: 14px;
+}
+.box-count .count-body{
+	margin: 8px 0;
+}
+.count-body .count-type{
+	display: inline-block;
+}
+.count-type span{
+	float: left;
+    height: 28px;
+    color: #000;
+    width: 40px;
+    text-align: center;
+    border: 1px solid rgba(0,0,0,.4)
+}
+.count-type span.icon{ 
+	font-size: 20px;
+    line-height: 24px;
+}
+.count-type span.left{ 
+	border-right: none;
+    border-bottom-left-radius: 2px;
+    border-top-left-radius: 2px;
+}
+.count-type span.disable{
+	border: 1px solid rgba(0,0,0,.3)
+}
+.count-type .center{
+	line-height: 28px;
+    float: left;
+    height: 28px;
+    color: #000;
+    width: 40px;
+    text-align: center;
+    border: 1px solid rgba(0,0,0,.4);
+}
+.count-type span.count-no-border{
+	border-left: none;
+    border-bottom-right-radius: 2px;
+    border-top-right-radius: 2px;
+}
+.count-type span.icon{
+	font-size: 20px;
+    line-height: 24px;
+}
+.box-body .box-bottom{
+	height: 48px; 
+}

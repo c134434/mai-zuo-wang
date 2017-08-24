@@ -1,0 +1,60 @@
+.film{
+	background: #f2f2f2;
+	overflow: auto;
+} 
+.page .banner{
+	width: 100%;
+}
+.banner .banner-img{
+	width: 100%;
+    transition: all 1.2s ease; 
+    opacity: 1; 
+}
+.page .main{
+	width: 100%;
+}
+.main .film-word1{
+	margin: 16px auto;
+    border-left: 16px solid RGB(228, 200, 156);
+    font-size: 16px;
+    padding-left: 4px; 
+}
+.main .film-word2{
+	height: 18px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    padding-left: 20px;
+}
+.film-word2 span{ 
+	font-size: 12px;
+	color: #333;
+}
+.main .film-word3{
+	text-overflow: ellipsis;
+    margin-bottom: 80px;
+    padding-left: 20px;
+    padding-right: 20px;
+	box-sizing: border-box;
+	font-size: 12px;
+	color: #333;
+}
+.page .foot{
+	position: fixed;
+    left: 0;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+}
+.foot .cpn-primary-button{
+	font-size: 14px;
+    min-width: 156px;
+    height: 36px;
+    line-height: 36px;
+    border: none;
+    background-color: #fe8233;
+    padding: 0;
+    margin: 0;
+    border-radius: 18px;
+    color: #fff;
+    -webkit-transition: 0.5s ease;
+}
