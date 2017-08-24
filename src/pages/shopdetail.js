@@ -4,6 +4,7 @@ import $ from "jquery"
 import "../css/main.css"
 import "../css/shopdetail.css" 
 let bannerSwiper = null;
+let myScroll=null
 export default class Me extends Component{
 	constructor(routeProps){
 		super()
@@ -14,16 +15,23 @@ export default class Me extends Component{
 			objData:{},
 			bannerdata:[],
 			price:'',
-			sale:''
+			sale:'',
+			item:[],
+			modefyindex:0,
+			p:''
 		}
 	} 
 	render(){
+		let ite=this.state.item?this.state.item.map((item1,index1)=>{
+											return <span onClick={this.modify.bind(this,index1)}  key={index1}>{item1}</span>
+								})  :''
 		return(
 			<div class="page detail"> 
+				<div class="wrap">
 				<div ref="banner" class="swiper-container home-banner1">
 						<div class="swiper-wrapper">
 						    {
-								this.state.bannerdata.map((item, index)=>{
+								this.state.bannerdata.map((item, index)=>{ 
 									return ( 
 										<div  key={index} class="swiper-slide">
 											<img class="banner-img" src={item} /> 
@@ -44,7 +52,7 @@ export default class Me extends Component{
 						<div class="location">全国</div>  
 					</div> 
 				</div>
-				<div class="sku-pick">
+				<div onClick={this.bttAction.bind(this)} class="sku-pick">
 					选择 规格 数量 
 					<i class="iconfont icon-arrow-right "></i>
 				</div>
@@ -53,13 +61,13 @@ export default class Me extends Component{
 						<div class="box-sku-info">
 							<div class="box-sku-head clearfix">
 								<div class="sku-pic">
-									<img class="sku-pic-img" src="" />
+									<img class="sku-pic-img" src={this.state.bannerdata[0]} />
 								</div>
 								<div class="sku-context">
-									<div class="price">￥49.00</div>
-									<div class="name">选择 规格 数量</div>
+									<div class="price">￥{this.state.price}</div> 
+									<div class="name">选择 规格 数量</div> 
 								</div>
-								<div>
+								<div onClick={this.bttnAction.bind(this)} >
 									<i>X</i>
 								</div>  
 							</div>
@@ -68,9 +76,7 @@ export default class Me extends Component{
 							<div class="box-sku-list">
 								<div class="option-name">款式</div>
 								<div class="option-list">
-									<span>熊二</span>
-									<span>熊大</span>
-									<span>雪熊</span>
+									{ite}
 								</div>
 							</div>
 						</div>
@@ -87,6 +93,22 @@ export default class Me extends Component{
 						<div class="box-bottom"></div>
 					</div> 
 				</div>
+				<div class="item-bottom">
+					<div class="item-footer-left item-footer-button">
+						<div class="item-footer-home item-footer-icon">
+							<i class="iconfont icon-home "></i>
+							<div class="foot-icon-text">首页</div>
+						</div> 
+					</div>
+					<div class="item-footer-right item-footer-act">立即购买</div>
+				</div>
+				<div class="desc desc-show">
+					<div class="desc-wrap" id="desc-w">
+						
+					</div>
+				</div>
+				<div class="empty-bottom"></div>
+				</div>
 			</div>
 		)
 	}
@@ -94,20 +116,64 @@ export default class Me extends Component{
 	componentWillMount(){
 		HomeService.getshopdetail(this.state.id)
 		.then((res)=>{
-				console.log(res)
-				this.setState({objData:res,bannerdata:res.skuList[1].images,price:res.skuList[1].marketPrice,sale:res.skuList[1].salesCount})
-				bannerSwiper.update();
-			}  
-		)
+			console.log(this.state.modefyindex)
+			this.setState({objData:res,bannerdata:res.skuList[this.state.modefyindex].images,price:res.skuList[this.state.modefyindex].marketPrice,sale:res.skuList[this.state.modefyindex].salesCount,item:res.item})
+			bannerSwiper.update();
+			}    
+	    ) 
+	    
+	    HomeService.gethtmlDate(this.state.id)
+		.then((res)=>{
+			var oDom=document.getElementById("desc-w")
+			oDom.innerHTML=res 
+			}     
+	    ) 
+	}   
+	bttnAction(){ 
+		$('.sku-box').hide()
 	}
-	
+	bttAction(){
+		$('.sku-box').show()
+	}
+	modify(n){
+		this.setState({modefyindex:n})
+		HomeService.getshopdetail(this.state.id)
+		.then((res)=>{ 
+			console.log(this.state.modefyindex)
+			this.setState({objData:res,bannerdata:res.skuList[this.state.modefyindex].images,price:res.skuList[this.state.modefyindex].marketPrice,sale:res.skuList[this.state.modefyindex].salesCount,item:res.item})
+			console.log(this.state.bannerdata)
+			bannerSwiper.update();
+			}    
+	    )
+	}
 	componentDidMount(){
+		$('.left').on('click',function(){
+			let x=$('.center').html()
+			if(x<2){
+				$('.center').html(1)
+			}
+			else{
+				x--
+				$('.center').html(x)
+			}
+		})
+		$(".right").on('click',function(){
+			let x=$('.center').html()
+			x++
+			$('.center').html(x)
+		})
 		bannerSwiper = new Swiper (this.refs.banner, {
 		    loop: true,
 		    autoplay : 1000 ,
 		    pagination: '.swiper-pagination' ,
 		    autoplayDisableOnInteraction : false  
 		 
+		})
+		
+		myScroll= new IScroll('.detail', {   
+			}); 
+		myScroll.on('scrollStart', function(){
+			myScroll.refresh();
 		})
 	}
 }

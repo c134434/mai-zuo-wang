@@ -232,7 +232,7 @@ function getshopDate(){
 			arr.push(arr1) 
 			let arr2=response.data.data.splice(0,2)
 			arr.push(arr2)
-			let arr3=response.data.data.splice(0,response.data.data.length-1)
+			let arr3=response.data.data.splice(0,response.data.data.length)
 			arr.push(arr3)
 			console.log(arr) 
 		    resolve(arr)       
@@ -350,8 +350,10 @@ function getshopdetail(id){
 			obj.displaySalesCount=b.displaySalesCount
 			obj.id=b.id
 			obj.supplierId=b.supplierId
-			obj.item=b.options[0].item
-			obj.name=b.options[0].name
+			if(b.options[0]){ 
+				obj.item=b.options[0].item
+				obj.name=b.options[0].name
+			}
 			obj.masterName=b.masterName
 			obj.slaveName=b.slaveName
 			obj.skuList=b.skuList.map((item)=>{
@@ -363,7 +365,7 @@ function getshopdetail(id){
 				obj1.salesCount=item.score+'.00'
 				obj1.masterName=item.masterName 
 				return obj1
-			})
+			}) 
 		    resolve(obj)   
 		})
 		//请求失败
@@ -372,7 +374,19 @@ function getshopdetail(id){
 		}); 
 	})
 }
-
+function gethtmlDate(id){  
+	 return new Promise((resolve,reject)=>{
+		axios.get(`${API.shopdetailP}?id=${id}`) 
+		//请求成功 
+		.then((response)=> {
+		    resolve(response.data.data.desc)    
+		})
+		//请求失败
+		.catch(function (error) {
+		   console.log(error);
+		}); 
+	})
+}
 export default{ 
 	getMoviesDate,
 	getbannerDate,
@@ -385,5 +399,6 @@ export default{
 	getfilmDate,
 	getshoplist,
 	getshopda,
-	getshopdetail
+	getshopdetail,
+	gethtmlDate
 }

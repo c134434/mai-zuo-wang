@@ -42,7 +42,7 @@ export default class App extends Component{
 					<Route path="/card" component={Card}/>
 					<Route path="/city-list" component={City}/>
 					<Route path="/film/:id" component={Film}/>
-					<Route path="/shop/:l/:id" component={ShopList}/>
+					<Route path="/shop1/:l/:id" component={ShopList}/>
 					<Route path="/shop/:id" component={ShopDetail}/>
 				</div>   
 			</Router>

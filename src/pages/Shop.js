@@ -107,11 +107,11 @@ export default class Shop extends Component{
 	}
 	btnMove(val,l){
 		this.state.history.push({
-				pathname: '/shop/'+l+'/'+val,  
+				pathname: '/shop1/'+l+'/'+val,  
 				state: {
 					id: val,
 					title:l 
-				} 
+				}  
 			});
 	}
 	btnAction(v){
