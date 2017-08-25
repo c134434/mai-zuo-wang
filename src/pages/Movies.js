@@ -3,6 +3,7 @@ import $ from "jquery"
 import "../css/movies.css"
 import HomeService from '../service/homeService.js'
 let myScroll=null;
+let i=1
 export default class Movies extends Component{
 	constructor(routeProps){
 		super()
@@ -14,6 +15,7 @@ export default class Movies extends Component{
 			history,
 			moviceNow:[],
 			moviceComing:[],  
+			n:1,
 			chooseIndex:location.state.chooseIndex ? location.state.chooseIndex :0
 		}
 	}
@@ -73,19 +75,20 @@ export default class Movies extends Component{
 	componentWillMount(){
 		HomeService.getcinemaDate()
 		.then((res)=>{
-			console.log(res)
+			//console.log(res)
 				this.setState({moviceNow:res}) 
 			}    
 		)
 		
 		HomeService.getcinemaList()
 		.then((res)=>{
-			console.log(res)
+			//console.log(res)
 				this.setState({moviceComing:res}) 
 			}    
 		)
 	}
-	componentDidMount(){ 
+	componentDidMount(){
+		var that =this
 		$(".tab").eq(this.state.chooseIndex).addClass("active")
 		$(".tab").on("click",function(){
 			$(this).addClass("active").siblings().removeClass("active")
@@ -103,13 +106,27 @@ export default class Movies extends Component{
 					//加载更多请求下一页数据,
 					setTimeout(function(){
 						endLoadMore();
-					}, 1000);
+					}, 200);
 				}  
 				
 			})  
 		//停止上拉加载更多的方法
 		function endLoadMore(){
-			 console.log(2222)    
+			i=i+1
+			that.setState({n:i})
+			HomeService.getcinemaDate(that.state.n)
+			.then((res)=>{
+				let ret=that.state.moviceNow.concat(res)
+				that.setState({moviceNow:ret})  
+				}    
+			)
+			
+			HomeService.getcinemaList(that.state.n)
+			.then((res)=>{
+				let rer=that.state.moviceNow.concat(res)	
+				that.setState({moviceComing:rer}) 
+				}    
+			)
 		}
 		myScroll.on('scrollStart', function(){
 			myScroll.refresh();

@@ -70,9 +70,9 @@ function getmoviceComingDate(){
 	})
 }
 //正在热映电影
-function getcinemaDate(){   
+function getcinemaDate(n){   
 	 return new Promise((resolve,reject)=>{
-		axios.get(`${API.cinemaUpcoming}?count=7&page=1`) 
+		axios.get(`${API.cinemaUpcoming}?count=7&page=${n}`)  
 		//请求成功 
 		.then((response)=> { 
 		  	let newarr=response.data.data.films.map((item)=>{
@@ -95,9 +95,9 @@ function getcinemaDate(){
 	})
 }
 //即将上映
-function getcinemaList(){   
+function getcinemaList(n){   
 	 return new Promise((resolve,reject)=>{
-		axios.get(`${API.cinemaList}?count=7&page=1`) 
+		axios.get(`${API.cinemaList}?count=7&page=${n}`) 
 		//请求成功 
 		.then((response)=> { 
 		  	let newarr=response.data.data.films.map((item)=>{
@@ -143,7 +143,7 @@ function getcinemaAdList(){
 		  	for(let i=0;i<newarr.length;i++){
 		  		if(arr.indexOf(newarr[i].quname)==-1){
 		  			arr.push(newarr[i].quname)
-		  		}
+		  		} 
 		  	}
 		  	//console.log(arr)
 		  	let arr2=arr.map((item)=>{
@@ -232,7 +232,7 @@ function getshopDate(){
 			arr.push(arr1) 
 			let arr2=response.data.data.splice(0,2)
 			arr.push(arr2)
-			let arr3=response.data.data.splice(0,response.data.data.length)
+			let arr3=response.data.data.splice(3,response.data.data.length)
 			arr.push(arr3)
 			console.log(arr) 
 		    resolve(arr)       
@@ -361,7 +361,7 @@ function getshopdetail(id){
 				item.images.splice(0, 0, item.images[item.images.length-1]);
 				//item.images.push(item.images[1]);
 				obj1.images=item.images 
-				obj1.marketPrice=item.marketPrice/100+'.00'
+				obj1.marketPrice=item.price/100+'.00'
 				obj1.salesCount=item.score+'.00'
 				obj1.masterName=item.masterName 
 				return obj1

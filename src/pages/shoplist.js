@@ -10,7 +10,8 @@ export default class Me extends Component{
 		this.state={
 			id:location.state.id,
 			dat:{},
-			data:[]
+			data:[],
+			history
 		}
 	}
 	render(){
@@ -29,9 +30,9 @@ export default class Me extends Component{
 					<div class="main">
 						<div class="content1">
 							{
-								this.state.data.map((item,index)=>{
+								this.state.data.map((item,index)=>{ 
 									return(
-										<div key={index} class="item">
+										<div onClick={this.btttAction.bind(this,item.id)} key={index} class="item">
 											<img class="item-img" src={item.image} />
 											<div class="tit">{item.masterName}</div> 
 											<div class="price">
@@ -53,17 +54,25 @@ export default class Me extends Component{
 	componentWillMount(){
 		HomeService.getshopda(this.state.id)
 		.then((res)=>{ 
-				console.log(res)
+				//console.log(res)
 				this.setState({data:res}) 
 			}  
 		)
 		
 		HomeService.getshoplist(this.state.id)
 		.then((res)=>{ 
-				console.log(res)
+				//console.log(res)
 				this.setState({dat:res}) 
 			}  
 		)
+	}
+	btttAction(v){
+		this.state.history.push({
+				pathname: '/shop/'+v,  
+				state: {
+					id:v 
+				}    
+			});
 	}
 	componentDidMount(){
 		myScroll= new IScroll('.two', {

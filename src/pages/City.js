@@ -7,8 +7,9 @@ import $ from "jquery"
 import store from '../store' 
 let myScroll
 export default class City extends Component{
-	constructor(){
+	constructor(routeProps){
 		super()
+		let {match, history, location} = routeProps; 
 		this.state={
 			cityHint:[
 			"A","B","C","D","E","F",
@@ -16,7 +17,8 @@ export default class City extends Component{
 			"N","P","Q","R","S","T",
 			"W","X","Y","Z"
 			],
-			cityData:[]
+			cityData:[],
+			history
 		}
 	}
 	render(){
@@ -91,7 +93,7 @@ export default class City extends Component{
 	componentWillMount(){
 		HomeService.getcityDate()
 		.then((res)=>{
-			console.log(res) 
+			//console.log(res) 
 			this.setState({cityData:res}) 
 			}  
 	)  
@@ -102,13 +104,15 @@ export default class City extends Component{
 		myScroll.refresh();  
 	}
 	cityAction(v){
-		console.log(v)
 		store.dispatch({
 			//事件名字
 			type: 'changename',
 			//参数
 			val: v 
 		});
+		this.state.history.push({
+				pathname: '/',     
+			});
 	}
 	componentDidMount(){ 
 		myScroll= new IScroll('.City', {
@@ -116,12 +120,12 @@ export default class City extends Component{
 				probeType: 3
 			}); 
 		myScroll.on('scrollStart', function(){
-			//myScroll.refresh();
+			myScroll.refresh();
 		})
 		
 		myScroll.on('scrollEnd', function(){
 			var disY = myScroll.y - myScroll.maxScrollY;
-			console.log(disY) 
+			console.log(disY)  
 		})
 	}
 	

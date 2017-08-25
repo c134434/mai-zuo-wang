@@ -2,10 +2,9 @@ import React, {Component} from 'react'
 import HomeService from '../service/homeService.js' 
 import $ from "jquery" 
 import "../css/main.css"
-import "../css/shopdetail.css" 
+import "../css/shopdetail.css"
 let bannerSwiper = null;
-let myScroll=null
-export default class Me extends Component{
+export default class ShopDetail extends Component{
 	constructor(routeProps){
 		super()
 		let {match, history, location} = routeProps;
@@ -13,48 +12,58 @@ export default class Me extends Component{
 			id:location.state.id,
 			history,
 			objData:{},
-			bannerdata:[],
+			bannerdata:[], 
 			price:'',
 			sale:'',
 			item:[],
-			modefyindex:0,
+			modefyindex:0, 
 			p:''
 		}
-	} 
+	}
 	render(){
 		let ite=this.state.item?this.state.item.map((item1,index1)=>{
 											return <span onClick={this.modify.bind(this,index1)}  key={index1}>{item1}</span>
 								})  :''
+		
 		return(
-			<div class="page detail"> 
-				<div class="wrap">
-				<div ref="banner" class="swiper-container home-banner1">
-						<div class="swiper-wrapper">
-						    {
-								this.state.bannerdata.map((item, index)=>{ 
-									return ( 
-										<div  key={index} class="swiper-slide">
-											<img class="banner-img" src={item} /> 
-										</div> 
-									) 
-								})
-							} 
+			<div class="detail">
+				<div class="main">
+					<div class="wrap">
+						<div ref="banner" class="swiper-container home-banner1">
+								<div class="swiper-wrapper">
+								    {
+										this.state.bannerdata.map((item, index)=>{ 
+											return ( 
+												<div  key={index} class="swiper-slide">
+													<img class="banner-img" src={item} /> 
+												</div> 
+											) 
+										})
+									} 
+								</div> 
+							<div class="swiper-pagination"></div> 
+						</div>
+						<div class="item-info">
+							<div class="name">{this.state.objData.masterName}</div>
+							<div class="subname">{this.state.objData.slaveName}</div>
+							<div class="price">￥{this.state.price}</div>
+							<div class="tips">
+								<div class="express-fee">快递：{this.state.sale} 元</div>
+								<div class="sold-amount">销量:{this.state.objData.displaySalesCount}</div>
+								<div class="location">全国</div>  
+							</div> 
+						</div>
+						<div onClick={this.bttAction.bind(this)} class="sku-pick">
+							选择 规格 数量 
+							<i class="iconfont icon-arrow-right "></i>
 						</div> 
-					<div class="swiper-pagination"></div> 
-				</div>
-				<div class="item-info">
-					<div class="name">{this.state.objData.masterName}</div>
-					<div class="subname">{this.state.objData.slaveName}</div>
-					<div class="price">￥{this.state.price}</div>
-					<div class="tips">
-						<div class="express-fee">快递：{this.state.sale} 元</div>
-						<div class="sold-amount">销量:{this.state.objData.supplierId}</div>
-						<div class="location">全国</div>  
-					</div> 
-				</div>
-				<div onClick={this.bttAction.bind(this)} class="sku-pick">
-					选择 规格 数量 
-					<i class="iconfont icon-arrow-right "></i>
+						<div class="desc desc-show">
+							<div class="desc-wrap" id="desc-w">
+								
+							</div> 
+						</div>
+						<div class="empty-bottom"></div>
+					</div>
 				</div>
 				<div class="sku-box">
 					<div class="box-body">
@@ -89,11 +98,10 @@ export default class Me extends Component{
 									<span class="count-no-border icon right">+</span>
 								</div>
 							</div>  
-						</div>
-						<div class="box-bottom"></div>
-					</div> 
+						</div> 
+					</div>  
 				</div>
-				<div class="item-bottom">
+				<div class="item-bottom"> 
 					<div class="item-footer-left item-footer-button">
 						<div class="item-footer-home item-footer-icon">
 							<i class="iconfont icon-home "></i>
@@ -101,18 +109,10 @@ export default class Me extends Component{
 						</div> 
 					</div>
 					<div class="item-footer-right item-footer-act">立即购买</div>
-				</div>
-				<div class="desc desc-show">
-					<div class="desc-wrap" id="desc-w">
-						
-					</div>
-				</div>
-				<div class="empty-bottom"></div>
-				</div>
+				</div> 
 			</div>
 		)
 	}
-	
 	componentWillMount(){
 		HomeService.getshopdetail(this.state.id)
 		.then((res)=>{
@@ -139,12 +139,14 @@ export default class Me extends Component{
 		this.setState({modefyindex:n})
 		HomeService.getshopdetail(this.state.id)
 		.then((res)=>{ 
-			console.log(this.state.modefyindex)
 			this.setState({objData:res,bannerdata:res.skuList[this.state.modefyindex].images,price:res.skuList[this.state.modefyindex].marketPrice,sale:res.skuList[this.state.modefyindex].salesCount,item:res.item})
-			console.log(this.state.bannerdata)
 			bannerSwiper.update();
 			}    
 	    )
+		let v=$('.option-list span').eq(n).html()
+		let y=$('.center').html()
+		$('.sku-pick').html(v+"x"+y)
+		$('.sku-box').hide()
 	}
 	componentDidMount(){
 		$('.left').on('click',function(){
@@ -168,12 +170,6 @@ export default class Me extends Component{
 		    pagination: '.swiper-pagination' ,
 		    autoplayDisableOnInteraction : false  
 		 
-		})
-		
-		myScroll= new IScroll('.detail', {   
-			}); 
-		myScroll.on('scrollStart', function(){
-			myScroll.refresh();
 		})
 	}
 }

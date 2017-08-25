@@ -78,9 +78,9 @@ export default class Shop extends Component{
 															<div onClick={this.btnAction.bind(this,ite3.id)} class="control-list" key={ind3}>
 																<img class="control-list-img" src={ite3.image}/>
 																<p class="control-list-title">{ite3.name.substring(0,7)}</p>
-																<p class="control-list-price">{ite3.price}</p> 
+																<p class="control-list-price">￥{ite3.price/100}.00</p> 
 															</div>  
-														)
+														) 
 													})
 												}
 											</div> 
@@ -97,7 +97,7 @@ export default class Shop extends Component{
 	componentWillMount(){
 		HomeService.getshopDate() 
 		.then((res)=>{
-			console.log(res)
+			//console.log(res)
 			res[1].splice(0, 0, res[1][res[1].length-1]);
 			//res[1].push(res[1][1]);   
 			this.setState({bannerListData:res[1],navData:res[0],goodsData:res[2],mainData:res[3]});
