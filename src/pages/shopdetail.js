@@ -4,6 +4,7 @@ import $ from "jquery"
 import "../css/main.css"
 import "../css/shopdetail.css"
 let bannerSwiper = null;
+let ischose=false
 export default class ShopDetail extends Component{
 	constructor(routeProps){
 		super()
@@ -133,6 +134,7 @@ export default class ShopDetail extends Component{
 		$('.sku-box').hide()
 	}
 	bttAction(){
+		$('.center').html(1)
 		$('.sku-box').show()
 	}
 	modify(n){
@@ -146,9 +148,18 @@ export default class ShopDetail extends Component{
 		let v=$('.option-list span').eq(n).html()
 		let y=$('.center').html()
 		$('.sku-pick').html(v+"x"+y)
-		$('.sku-box').hide()
+		ischose=true
 	}
 	componentDidMount(){
+		$('.item-footer-right').on('click',()=>{
+			if(ischose){
+				alert("请登录") 
+				this.state.history.push({
+					pathname: '/me',     
+				}); 
+			}
+			ischose=false
+		})
 		$('.left').on('click',function(){
 			let x=$('.center').html()
 			if(x<2){

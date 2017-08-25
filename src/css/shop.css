@@ -79,6 +79,54 @@
 	display: block;
 	width: 100%; 
 }
+.page .price{
+	text-align: center;
+	background: #fff;
+}
+.price .active-title{
+	height: 13px;
+    font-size: 13px;
+    line-height: 13px;
+    text-align: center;
+    margin-top: 10px;
+    color: #323232;
+}
+.price .active-contain{
+	padding-left: 10px;
+	padding-right: 10px;
+	box-sizing: border-box
+}
+.active-contain .active-center{
+	width: 100%
+}
+.active-center .active-left{
+	float: left;
+    width: 50%;
+    text-align: center;
+    padding-top: 10px;
+	padding-bottom: 10px;
+	box-sizing: border-box
+}
+.active-left .price-left-content{
+	display: inline-block;
+	width: 100%;
+	padding-right: 2.5px;
+}
+.price-left-content img{
+	width: 100%
+}
+.price-left-content .top{
+	margin-bottom: 5px;
+}
+.top img{
+	width: 100%
+}
+.price-left-content .bottom{
+	width: 100%
+}
+.bottom .img{
+	width: 100%; 
+}
 .page .main{
 	width: 100%;
 }

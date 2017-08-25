@@ -14,6 +14,9 @@ export default class Shop extends Component{
 			navData:[],
 			goodsData:[],
 			mainData:[],
+			img1:"",
+			img2:"",
+			img3:"",
 			history
 		}
 	}
@@ -62,6 +65,28 @@ export default class Shop extends Component{
 							})
 						} 
 					</div>
+					<div class="price active">
+						<div class="active-title">— 有品专区 —</div>
+						<div class="active-contain">
+							<div class="active-center">
+								<div class="active-left">
+									<div class="price-left-content">
+										<img src={this.state.img2.imageSrc} />
+									</div>
+								</div>
+								<div class="active-left">
+									<div class="price-left-content">
+										<div class="top">
+											<img src={this.state.img1.imageSrc} />
+										</div>
+										<div class="bottom">
+											<img src={this.state.img3.imageSrc} />
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 					<div class="main">
 						{
 							this.state.mainData.map((ite2,ind2)=>{
@@ -99,9 +124,9 @@ export default class Shop extends Component{
 		.then((res)=>{
 			//console.log(res)
 			res[1].splice(0, 0, res[1][res[1].length-1]);
-			//res[1].push(res[1][1]);   
-			this.setState({bannerListData:res[1],navData:res[0],goodsData:res[2],mainData:res[3]});
-				bannerSwiper.update();
+			//res[1].push(res[1][1]);    
+			this.setState({bannerListData:res[1],navData:res[0],goodsData:res[2],img1:res[3][0],img2:res[3][1],img3:res[3][2],mainData:res[4]});
+				bannerSwiper.update(); 
 			}    
 		)
 	}
