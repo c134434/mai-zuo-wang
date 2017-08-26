@@ -4,7 +4,7 @@ import $ from "jquery"
 import "../css/main.css"
 import "../css/shopdetail.css"
 let bannerSwiper = null;
-let ischose=false
+let arr=[];
 export default class ShopDetail extends Component{
 	constructor(routeProps){
 		super()
@@ -18,7 +18,8 @@ export default class ShopDetail extends Component{
 			sale:'',
 			item:[],
 			modefyindex:0, 
-			p:''
+			p:'',
+			idx:''
 		}
 	}
 	render(){
@@ -117,8 +118,7 @@ export default class ShopDetail extends Component{
 	componentWillMount(){
 		HomeService.getshopdetail(this.state.id)
 		.then((res)=>{
-			console.log(this.state.modefyindex)
-			this.setState({objData:res,bannerdata:res.skuList[this.state.modefyindex].images,price:res.skuList[this.state.modefyindex].marketPrice,sale:res.skuList[this.state.modefyindex].salesCount,item:res.item})
+			this.setState({objData:res,bannerdata:res.skuList[this.state.modefyindex].images,price:res.skuList[this.state.modefyindex].marketPrice,sale:res.skuList[this.state.modefyindex].salesCount,idx:res.skuList[this.state.modefyindex].id,item:res.item})
 			bannerSwiper.update();
 			}    
 	    ) 
@@ -130,7 +130,7 @@ export default class ShopDetail extends Component{
 			}     
 	    ) 
 	}   
-	bttnAction(){ 
+	bttnAction(){  
 		$('.sku-box').hide()
 	}
 	bttAction(){
@@ -141,24 +141,51 @@ export default class ShopDetail extends Component{
 		this.setState({modefyindex:n})
 		HomeService.getshopdetail(this.state.id)
 		.then((res)=>{ 
-			this.setState({objData:res,bannerdata:res.skuList[this.state.modefyindex].images,price:res.skuList[this.state.modefyindex].marketPrice,sale:res.skuList[this.state.modefyindex].salesCount,item:res.item})
-			bannerSwiper.update();
+			this.setState({objData:res,bannerdata:res.skuList[this.state.modefyindex].images,price:res.skuList[this.state.modefyindex].marketPrice,sale:res.skuList[this.state.modefyindex].salesCount,idx:res.skuList[this.state.modefyindex].id,item:res.item})
+			bannerSwiper.update(); 
 			}    
 	    )
 		let v=$('.option-list span').eq(n).html()
 		let y=$('.center').html()
 		$('.sku-pick').html(v+"x"+y)
-		ischose=true
+		
 	}
 	componentDidMount(){
 		$('.item-footer-right').on('click',()=>{
-			if(ischose){
+			let ischose=sessionStorage.getItem('ischose')
+			if(ischose==null){
 				alert("请登录") 
 				this.state.history.push({
-					pathname: '/me',     
+					pathname: '/me',       
 				}); 
 			}
-			ischose=false
+			else if(ischose){
+				let obj={}
+				obj.img=this.state.bannerdata[0]
+				obj.price=this.state.price
+				obj.color=$('.option-list span').eq(this.state.modefyindex).html();
+				obj.number=$('.center').html()
+				obj.id=this.state.id
+				obj.idx=this.state.idx 
+				if(arr.length>0){ 
+					for(let i=0;i<arr.length;i++){
+						if(arr[i].id==obj.id){
+							arr[i].number=parseInt((arr[i].number))+1 
+						}
+						else{
+							arr.push(obj) 
+						}
+					}
+				}
+				else{
+					arr.push(obj)
+				}
+				console.log(arr)
+				let val=JSON.stringify(arr)
+				localStorage.setItem("test",val);
+			}
+			 
+			
 		})
 		$('.left').on('click',function(){
 			let x=$('.center').html()

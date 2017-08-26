@@ -365,7 +365,8 @@ function getshopdetail(id){
 				obj1.images=item.images 
 				obj1.marketPrice=item.price/100+'.00'
 				obj1.salesCount=item.score+'.00'
-				obj1.masterName=item.masterName 
+				obj1.masterName=item.masterName
+				obj1.id=item.id
 				return obj1
 			}) 
 		    resolve(obj)   

@@ -34,7 +34,8 @@ export default class Me extends Component{
 	btnAction(){
 		if($(".form1-control").val()!=""&&$(".form2-control").val()!=""){
 			alert ('登录成功')
-			this.state.history.push({ 
+			sessionStorage.setItem("ischose",true)  
+			this.state.history.push({   
 				pathname:'/'   
 			});  
 		}
